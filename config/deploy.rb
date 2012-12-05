@@ -1,5 +1,5 @@
 require "bundler/capistrano"
-server "192.168.101.5", :web, :app, :db, primary: true
+server "192.168.101.6", :web, :app, :db, primary: true
 set :application, "my_site"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
@@ -15,7 +15,7 @@ namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      #run "cd #{current_path}/ && rake assets:precompile"
+      #run "cd #{current_path}/ &&  rake assets:precompile"
       run "/etc/init.d/unicorn_#{application} #{command}"
     end
   end
