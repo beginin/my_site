@@ -16,7 +16,7 @@ namespace :deploy do
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
       run "cd #{current_path}/ && rake assets:precompile"
-      run "/etc/init.d/unicorn_#{application} #{command}"
+      #run "/etc/init.d/unicorn_#{application} #{command}"
     end
   end
   task :setup_config, roles: :app do
